@@ -1,2 +1,3 @@
-# calculator
-it's just a calculator, which I'm trying to make as complex as possible, even though it can only work with 2 numbers and can only use 4 different mathematical operators.
+ <h1>Calculator</h1>
+ It's just a calculator that can work with 4 numbers & 2 operators.
+ That's it.
