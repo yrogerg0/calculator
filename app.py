@@ -1,10 +1,10 @@
 from os import system
 from time import sleep
 import platform
+import sys
 
 # i've made a function for everything for the simplicity & the ability
 # to jump back & forth, wherever I want the program to jump to.
-
 
 # checks what platform you opened the program from
 # which is useful so I can clear your terminal / cmd prompt.
@@ -26,6 +26,7 @@ def exit(i):
         i -= 1
     if i == 0:
         clear()
+        sys.exit()
 
 # main program
 def calculator():
@@ -35,7 +36,7 @@ def calculator():
     # first number input
     def num1_input():
         try:
-            num1_input.num1 = float(input("num1: "))
+            num1_input.num1 = float(input("First number: "))
         except ValueError:
             clear()
             print("Invalid number, try again!")
@@ -47,7 +48,15 @@ def calculator():
     num1_input()
     num1 = num1_input.num1
 
-    clear()
+    # scans whether it's an integer or a float
+    if num1 % 1 == 0:
+        num1 = int(num1)
+    else:
+        num1 = float(num1)
+
+    # print out current equation
+    # clear()
+    print("current equation: "+str(num1))
 
     # operator input
     def operator_input():
@@ -60,18 +69,26 @@ def calculator():
     operator_input()
     operator = operator_input.operator
 
+    # print out current equation
     clear()
+    print("current equation: "+str(num1)+operator)
 
     # second number input
     def num2_input():
         try:
-            num2_input.num2 = float(input("num2: "))
+            num2_input.num2 = float(input("Second number: "))
         except ValueError:
             clear()
             print("Invalid number, try again!")
             num2_input()
     num2_input()
+
+    # scans whether it's an integer or a float
     num2 = num2_input.num2
+    if num2 % 1 == 0:
+        num2 = int(num2)
+    else:
+        num2 = float(num2)
 
     # elif operators
     def operator_choose():
@@ -98,15 +115,16 @@ def calculator():
     # printing the answer
     def answer_prompt():
         clear()
+        print("current equation: "+str(num1)+operator+str(num2))
         print("answer: "+str(answer))
     answer_prompt()
 
     # restart program or continue
     def con():
-        var = input("[1] = new calculation\n[2] = quit game\nYou: ")
-        if var == "1":
+        num1 = input("[1] = new calculation\n[2] = quit game\nYou: ")
+        if num1 == "1":
             calculator()
-        if var == "2":
+        if num1 == "2":
             exit(3)
         else:
             clear()
